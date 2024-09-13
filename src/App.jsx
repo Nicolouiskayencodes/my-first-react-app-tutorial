@@ -1,4 +1,5 @@
 import './App.css'
+import { useState } from 'react';
 
 function List(props) {
   if (!props.animals) {
@@ -17,6 +18,41 @@ function List(props) {
     </ul>
   );
 }
+function Person() {
+  const [person, setPerson] = useState(100);
+  const [first, setFirst] = useState("John");
+  const [last, setLast] = useState("");
+  const name = first + " " + last
+  // GOOD - Do this!
+  const handleIncreaseAge = () => {
+    setPerson(person+1);
+  };
+  
+  
+
+  return (
+    <>
+      <h1>{name}</h1>
+      <h2>{person}</h2>
+      <button onClick={handleIncreaseAge}>Increase age</button>
+      <label>First Name</label>
+      <input
+      type="text"
+      value={first}
+      onChange={(event) => setFirst(event.target.value)}
+    />
+    <label>Last name</label>
+     <input
+      type="text"
+      value={last}
+      onChange={(event) => setLast(event.target.value)}
+    />
+    </>
+  );
+}
+
+
+
 
 function App() {
   const animals = [];
@@ -25,6 +61,7 @@ function App() {
     <div>
       <h1>Animals: </h1>
       <List  />
+      <Person />
     </div>
   );
 }
